@@ -2,8 +2,14 @@
 
 import {
   CitySearchType,
+<<<<<<< HEAD
   CurrentAQIType,
   HourlyAQIType,
+=======
+  CurrentWeatherType,
+  DailytWeatherType,
+  HourlyWeatherType,
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
   getWeather,
 } from "@/api/APICalls";
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -12,20 +18,34 @@ import DayCard from "../components/card/DayCard";
 import Header from "../components/header/Header";
 import TableRow from "../components/table/TableRow";
 import Search from "@/components/search/Search";
+<<<<<<< HEAD
 import { getAQIIcon } from "@/util/IconCode2";
 const HOURLY_DATA_DISPLAY_LIMIT: number = 10  ;
 
 export default function Home() {
   const [currentData, setCurrentData] = useState<CurrentAQIType>();
   const [hourlyData, setHourlyData] = useState<HourlyAQIType[]>([]);
+=======
+const HOURLY_DATA_DISPLAY_LIMIT: number = 10;
+
+export default function Home() {
+  const [currentData, setCurrentData] = useState<CurrentWeatherType>();
+  const [dailyData, setDailyData] = useState<DailytWeatherType[]>([]);
+  const [hourlyData, setHourlyData] = useState<HourlyWeatherType[]>([]);
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
   const [selectedResult, setSelectedResult] = useState<CitySearchType>(
     {} as CitySearchType
   );
   const [currentHourlyDispayIndex, setCurrentHourlyDispayIndex] =
     useState<number>(0);
   const [hourlyDisplayData, setHourlyDisplayData] = useState<
+<<<<<<< HEAD
     HourlyAQIType[]
   >([]);
+=======
+    HourlyWeatherType[]
+  >([]); 
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
   const [location, setLocation] = useState<{
     latitude: number;
     longitude: number;
@@ -37,7 +57,10 @@ export default function Home() {
         ({ coords }) => {
           const { latitude, longitude } = coords;
           setLocation({ latitude, longitude });
+<<<<<<< HEAD
           // console.log("okk")
+=======
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
         },
         (error) => {
           alert(
@@ -49,7 +72,11 @@ export default function Home() {
   }, []);
 
   const limitHourlyData = useCallback(
+<<<<<<< HEAD
     (data: HourlyAQIType[]) => {
+=======
+    (data: HourlyWeatherType[]) => {
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
       const newData = data.slice(
         0,
         HOURLY_DATA_DISPLAY_LIMIT + currentHourlyDispayIndex
@@ -81,6 +108,13 @@ export default function Home() {
         setCurrentData(weatherData.current);
       }
 
+<<<<<<< HEAD
+=======
+      if (weatherData.daily) {
+        setDailyData(weatherData.daily);
+      }
+
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
       if (weatherData.hourly) {
         limitHourlyData(weatherData.hourly);
         setHourlyData(weatherData.hourly);
@@ -101,7 +135,11 @@ export default function Home() {
   // if(currentData == null || currentData == undefined){
   //   return '';
   // }
+<<<<<<< HEAD
 console.log("Hourly data received:", hourlyDisplayData);
+=======
+
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
   return (
     // className="flex min-h-screen flex-col items-center justify-between p-24"
     <main className={`${currentData == null ? "blur-md" : ""} `}>
@@ -119,6 +157,7 @@ console.log("Hourly data received:", hourlyDisplayData);
         onClickResultHandler={onClickResultHandler}
       />
       <Header
+<<<<<<< HEAD
   aqi={currentData?.aqi}
   pm25={currentData?.pm25}
   pm10={currentData?.pm10}
@@ -129,6 +168,18 @@ console.log("Hourly data received:", hourlyDisplayData);
   iconCode2={50} // static cloud icon, change if you add weather API later
 />
       {/* <section className="grid grid-cols-[repeat(auto-fit,100px)] gap-2 justify-center p-4">
+=======
+        currentTemp={currentData?.currentTemp}
+        highTemp={currentData?.highTemp}
+        lowTemp={currentData?.lowTemp}
+        highFeelsLike={currentData?.highFeelsLike}
+        lowFeelsLike={currentData?.lowFeelsLike}
+        windSpeed={currentData?.windSpeed}
+        precip={currentData?.precip}
+        iconCode={currentData?.iconCode}
+      />
+      <section className="grid grid-cols-[repeat(auto-fit,100px)] gap-2 justify-center p-4">
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
         {dailyData.map((item, index) => (
           <DayCard
             key={index}
@@ -137,13 +188,18 @@ console.log("Hourly data received:", hourlyDisplayData);
             degree={item.maxTemp}
             // className="border-red-600"
           />
+<<<<<<< HEAD
         ))} */}
+=======
+        ))}
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
         {/* <DayCard
           // icon={<FaSun className="w-16 h-16" />}
           iconCode={999}
           day="Monday"
           degree={32}
         /> */}
+<<<<<<< HEAD
       {/* </section> */}
 
       {/* <div className="container" style={{
@@ -184,6 +240,22 @@ console.log("Hourly data received:", hourlyDisplayData);
   o3={item.o3}
   co={item.co}
 />
+=======
+      </section>
+
+      <table className="w-full text-center border-spacing-0">
+        <tbody>
+          {hourlyDisplayData.map((item, index) => (
+            <TableRow
+              key={index}
+              maxTemp={item.maxTemp}
+              feelsLike={item.feelsLike}
+              precip={item.precip}
+              timestamp={item.timestamp}
+              windSpeed={item.windSpeed}
+              iconCode={item.iconCode}
+            />
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
           ))}
         </tbody>
       </table>
@@ -201,6 +273,7 @@ console.log("Hourly data received:", hourlyDisplayData);
           </button>
         </div>
       )}
+<<<<<<< HEAD
       <footer className="w-full bg-[#A9D6E5] text-[#023E8A] mt-10 py-8 px-6 rounded-t-2xl shadow-md">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-2xl font-semibold mb-6">More About Air Quality</h2>
@@ -224,5 +297,8 @@ console.log("Hourly data received:", hourlyDisplayData);
     </footer>
     </main>
     
+=======
+    </main>
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
   );
 }

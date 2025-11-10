@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 import { getIcon } from "@/util/IconCode";
 import { getAQIIcon } from "@/util/IconCode2";
+=======
+import { FaSun } from "react-icons/fa";
+import { getIcon } from "@/util/IconCode";
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
 import { formatTimestampToDay, formatTimestampToNumericHour } from "@/util/Date";
 
 type TableRowProps = {
   timestamp: number | undefined;
+<<<<<<< HEAD
   iconCode2?: number | undefined;
   aqi: number | undefined;
   pm25: number | undefined;
@@ -12,10 +18,18 @@ type TableRowProps = {
   so2: number | undefined;
   o3: number | undefined;
   co: number | undefined;
+=======
+  iconCode?: number | undefined;
+  maxTemp: number | undefined;
+  feelsLike: number | undefined;
+  windSpeed: number | undefined;
+  precip: number | undefined;
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
 };
 
 export default function TableRow({
   timestamp = 999,
+<<<<<<< HEAD
   iconCode2 = 999,
   aqi = 0,
   pm25 = 0,
@@ -27,19 +41,37 @@ export default function TableRow({
 }: TableRowProps) {
 
   const { icon: Icon, color, label } = getAQIIcon(aqi);
+=======
+  iconCode = 999,
+  maxTemp = 31,
+  feelsLike = 30,
+  windSpeed = 19,
+  precip = 0.1,
+}: TableRowProps) {
+
+  const Icon = getIcon(iconCode);
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
   const dayDate = formatTimestampToDay(timestamp);
   const hourDate = formatTimestampToNumericHour(timestamp);
 
   return (
+<<<<<<< HEAD
     <tr className="[&>td]:p-2 [&>td>*]:gap-1 even:bg-sky-300/60 odd:bg-sky-300/30">
       
       {/* Time */}
       <td>
         <div className="flex flex-col items-center">
+=======
+    <tr className="[&>td]:p-2 [&>td>*]:gap-1 even:bg-sky-300/60 odd:bg-sky-300/30 ">
+      {/* [&>*:nth-child(even)]:bg-borwn-50 */}
+      <td>
+        <div className="flex flex-col items-center ">
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
           <div className="uppercase font-bold text-xs text-foregroundSecondaryColor">{dayDate}</div>
           <div className="uppercase">{hourDate}</div>
         </div>
       </td>
+<<<<<<< HEAD
 
       {/* Icon */}
       <td>
@@ -99,6 +131,38 @@ export default function TableRow({
         <div className="flex flex-col items-center">
           <div className="uppercase font-bold text-xs text-foregroundSecondaryColor">CO</div>
           <div>{co}</div>
+=======
+      <td>
+        {/* <FaSun className="w-12 h-12 object-contain" /> */}
+        <Icon className="w-12 h-12 object-contain" />
+      </td>
+      <td>
+        <div className="flex flex-col items-center">
+          <div className="uppercase font-bold text-xs text-foregroundSecondaryColor">TEMP</div>
+          <div>{maxTemp}&deg;</div>
+        </div>
+      </td>
+      <td>
+        <div className="flex flex-col items-center">
+          <div className="uppercase font-bold text-xs text-foregroundSecondaryColor">FL TEMP</div>
+          <div>{feelsLike}&deg;</div>
+        </div>
+      </td>
+      <td>
+        <div className="flex flex-col items-center">
+          <div className="uppercase font-bold text-xs text-foregroundSecondaryColor">WIND</div>
+          <div>
+            {windSpeed}<span className="font-normal text-sm">mph</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div className="flex flex-col items-center">
+          <div className="uppercase font-bold text-xs text-foregroundSecondaryColor">PRECIP</div>
+          <div>
+            {precip}<span className="font-normal text-sm">in</span>
+          </div>
+>>>>>>> 08224d96 (Refactor code structure for improved readability and maintainability)
         </div>
       </td>
     </tr>

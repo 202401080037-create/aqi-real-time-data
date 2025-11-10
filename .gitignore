@@ -1,8 +1,23 @@
+## Node modules
 node_modules/
+
+## Next.js build output
 .next/
+
+## Environment files
 .env
+.env.local
+.env.*.local
+
+## Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+## OS files
 .DS_Store
-*.log
-.vscode/
-dist/
-out/
+
+## Optional: lockfiles (uncomment if you don't want to commit them)
+# package-lock.json
+# yarn.lock
+
